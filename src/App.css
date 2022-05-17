@@ -39,3 +39,9 @@ margin-right: 50px;
 .Typography{
 text-align:left;
 }
+
+a{
+text-decoration: none;
+list-style: none;
+color: black;
+}
