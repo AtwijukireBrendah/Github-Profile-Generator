@@ -13,7 +13,6 @@ function App() {
   const [avatar, setAvatar] = useState("");
   const [bio, setBio] = useState("");
   const [userInput, setUserInput] = useState("");
-  const [error, setError] = useState(null);
   const[location,setLocation]=useState("");
   const[dateJoined,setDateJoined]=useState("");
 
@@ -104,16 +103,16 @@ function App() {
               {name} is a {bio}
               <br/>
               <br/>
-              <a><Icon name="user" />{location}</a>
-              <a><Icon name="user" />Joined {dateJoined}</a>
+              <a href="https://github.com/"><Icon name="user" />{location}</a>
+              <a href="https://github.com/"><Icon name="user" />Joined {dateJoined}</a>
             </Typography>
           </CardContent>
           <CardActions>
             <div>
             <span>
-              <a><Icon name="user" />{repos} Repos</a>
-              <a><Icon name="user" />{followers} Followers</a>
-              <a><Icon name="user" />{following} Following</a>
+              <a href="https://github.com/"><Icon name="user" />{repos} Repos</a>
+              <a href="https://github.com/"><Icon name="user" />{followers} Followers</a>
+              <a href="https://github.com/"><Icon name="user" />{following} Following</a>
             </span>
             </div>
             
