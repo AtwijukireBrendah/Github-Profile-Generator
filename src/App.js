@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {Form, TextField, Button, Icon } from "@mui/material";
+import {TextField, Button, Icon } from "@mui/material";
 import { Card, CardMedia, CardContent, Typography, CardActions } from "@mui/material";
-import Avatar from '@mui/material/Avatar';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import "./App.css";
-import { SettingsSystemDaydreamRounded } from "@mui/icons-material";
+
 
 function App() {
   const [name, setName] = useState("");
@@ -20,10 +16,26 @@ function App() {
   const [error, setError] = useState(null);
   const[location,setLocation]=useState("");
   const[dateJoined,setDateJoined]=useState("");
- 
+
+  const handleSearch = (e) => {
+    setUserInput(e.target.value);
+    console.log(setUserInput);
+  };
+
+  const handleSubmit = () => {
+    let apiUrl = `https://api.github.com/users/${userInput}`;
+    fetch(apiUrl)
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        setData(data);
+      })
+  }
+
 
   useEffect(() => {
-    let apiUrl = "https://api.github.com/users/atwijukirebrendah";
+    let apiUrl = "https://api.github.com/users/roland-sankara";
     fetch(apiUrl)
       .then((response) => {
         return response.json()
@@ -63,31 +75,15 @@ function App() {
 
   };
 
-  const handleSearch = (e) => {
-    setUserInput(e.target.value);
-    console.log(setUserInput);
-  };
-
-  const handleSubmit = () => {
-    let apiUrl = `https://api.github.com/users/${userInput}`;
-    fetch(apiUrl)
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        setData(data);
-      })
-  }
-
   return (
     <div >
       <div className="navbar">Find Github User Profile</div>
-      <form type="submit" className="form" noValidate autoComplete="on" onSubmit={handleSubmit}>
+      <form  className="form" noValidate autoComplete="on">
         <span id="search">
           <TextField size="small" id="name" placeholder="Github User" variant="outlined" onChange={handleSearch} />
         </span>
         <Button typecontent="Search"
-          variant="contained">Search</Button>
+          variant="contained" onClick={handleSubmit} >Search</Button>
           </form>
       <div className="card">
         <Card sx={{ maxWidth: 345 }}>
@@ -120,8 +116,6 @@ function App() {
               <a><Icon name="user" />{following} Following</a>
             </span>
             </div>
-            
-           
             
           </CardActions>
         </Card>
